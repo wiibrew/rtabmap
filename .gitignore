@@ -7,3 +7,5 @@ app/android/.classpath
 app/android/.project
 app/android/AndroidManifest.xml
 app/android/res/raw/
+/bin
+/build
