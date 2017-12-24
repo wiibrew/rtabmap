@@ -2036,7 +2036,7 @@ SensorData CameraFreenect2::captureImage(CameraInfo * info)
 			}
 
 			//check out htis number for init
-			//std::cout<<fx<<fy<<cx<<cy;
+			//std::cout<<" "<<fx<<" "<<fy<<" "<<cx<<" "<<cy<<std::endl;
 			data = SensorData(rgb, depth, model, this->getNextSeqID(), stamp);
 
 			listener_->release(frames);
