@@ -3273,13 +3273,27 @@ SensorData CameraRGBDImages::captureImage(CameraInfo * info)
 
 	SensorData rgb, depth;
 	rgb = CameraImages::captureImage(info);
+	CameraModel model;
+
+	model=CameraModel(
+			366.068, //fx
+			366.068, //fy
+			259.899,  //cx
+			207.908, // cy
+			this->getLocalTransform(),
+			0,
+			cv::Size(0,0));
+
 	if(!rgb.imageRaw().empty())
 	{
 		depth = cameraDepth_.takeImage();
+
+
 		if(!depth.depthRaw().empty())
 		{
-			data = SensorData(rgb.imageRaw(), depth.depthRaw(), rgb.cameraModels(), rgb.id(), rgb.stamp());
+			data = SensorData(rgb.imageRaw(), depth.depthRaw(), model, rgb.id(), rgb.stamp());
 			data.setGroundTruth(rgb.groundTruth());
+			//std::cout<<"capture..."<<std::endl;
 		}
 	}
 	return data;
